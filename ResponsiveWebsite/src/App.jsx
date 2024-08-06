@@ -1,47 +1,31 @@
 import './App.css'
-
-function Mybutton() {
-  return (
-    <>
-      <button className="Mybotton">a button</button>
-      <button>a button</button>
-    </>
-  );
-}
-function Mybutton1() {
-  return (
-    <>
-      <button>a button</button>
-    </>
-  );
-}
-
-const products = [
-  { title: 'Cabbage',isfrute : false, id: 1 },
-  { title: 'Garlic',isfrute : false, id: 2 },
-  { title: 'Apple',isfrute : true, id: 3 },
-  { title: 'Pinaple',isfrute : true, id: 4 },
-];
+import { useState } from 'react'
 
 
 export default function App() {
+  const [count , setCount] = useState(0);
 
-  const listItems = products.map(
-    product => 
-    <li 
-      key={product.id} 
-      style={{
-        color : product.isfrute ? 'red' : 'blue'
-      }}
-    >
-      {product.title}
-    </li>
-  )
+  function handleClick() {
+    setCount(count + 1);
+  }
 
   return (
     <>
-      <ul>{listItems}</ul>
+      <Mybutton count={count} onClick={handleClick}/>
+      <Mybutton count={count} onClick={handleClick}/>
     </>
   )
+
 }
 
+function Mybutton({count , onClick}) {
+  
+  return (
+    <>
+      <button className="Mybotton" onClick={onClick}>
+        button 
+      </button>
+      <h1>{count}</h1>
+    </>
+  );
+}
